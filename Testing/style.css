@@ -1,0 +1,177 @@
+/* Root Variables */
+:root {
+    --light-bg: #ffffff;
+    --light-text: #111111;
+    --light-border: #cccccc;
+  
+    --dark-bg: #1e1e1e;
+    --dark-text: #ffffff;
+    --dark-border: #444444;
+  
+    --primary-color: #0077ff;
+    --danger-color: #e63946;
+    --success-color: #06d6a0;
+  }
+  
+  /* Global Styles */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--light-border);
+    background-color: #f9f9f9;
+  }
+  
+  body.dark-mode .container {
+    border: 1px solid var(--dark-border);
+    background-color: #2a2a2a;
+  }
+  
+  /* Title and Subtitle */
+  h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  p.subtitle {
+    text-align: center;
+    margin-top: -10px;
+    font-style: italic;
+    color: gray;
+  }
+  
+  /* Input Area */
+  textarea {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  body.dark-mode textarea {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid var(--dark-border);
+  }
+  
+  /* Dropdowns and Buttons */
+  select, button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--light-border);
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  select {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+  
+  body.dark-mode select {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid var(--dark-border);
+  }
+  
+  button:hover {
+    background-color: #005fcc;
+  }
+  
+  /* Spinner */
+  #spinner {
+    display: none;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  #spinner.active {
+    display: block;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Result Display */
+  .result {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .result.success {
+    color: var(--success-color);
+  }
+  
+  .result.error {
+    color: var(--danger-color);
+  }
+  
+  /* Theme Toggle */
+  #theme-toggle {
+    float: right;
+    margin-bottom: 1rem;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+  }
+  
+  body.dark-mode #theme-toggle {
+    background-color: #ddd;
+    color: #000;
+  }
+  
+  /* Character Count */
+  .char-count {
+    text-align: right;
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    textarea {
+      height: 150px;
+    }
+  
+    button, select {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+  
