@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Truthify - Fake News Detection</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">Truthify - Fake News Detection</h1>
+    <p id="subtitle">Check if your news is real or fake in seconds.</p>
+
+    <div class="controls">
+      <label for="language">🌐 Language:</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+      </select>
+
+      <label for="category">📰 Category:</label>
+      <select id="category">
+        <option value="politics">Politics</option>
+        <option value="health">Health</option>
+        <option value="sports">Sports</option>
+        <option value="business">Business</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="technology">Technology</option>
+      </select>
+
+      <label class="theme-toggle">
+        <input type="checkbox" id="themeSwitch">🌙 Dark Mode
+      </label>
+    </div>
+
+    <textarea id="articleInput" placeholder="Paste your news article here..."></textarea>
+    <div id="charCount">0 characters</div>
+
+    <div class="buttons">
+      <button id="checkButton">✅ Check News</button>
+      <button id="resetButton">🔄 Reset</button>
+    </div>
+
+    <div id="spinner" style="display:none;">🔎 Analyzing...</div>
+    <div id="result"></div>
+  </div>
+
+  <py-script src="main.py"></py-script>
+</body>
+</html>
