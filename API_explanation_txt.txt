@@ -1,0 +1,68 @@
+안녕하세요!
+
+API가 완성되었으니, 아래 정보를 참고해서 프론트엔드 웹사이트를 만들어 주세요.
+HTML / CSS / JavaScript를 사용해서 구현 부탁드립니다!
+
+---
+
+🌐 API 엔드포인트:
+http://○○:8000/summarize
+
+📡 요청 형식:
+- 메서드: POST
+- 헤더: Content-Type: application/json
+- 본문은 아래와 같은 JSON 형식입니다:
+
+{
+  "url": "https://example.com/some-news-article"
+}
+
+📨 응답 형식:
+{
+  "summary": "여기에 요약문이 들어갑니다"
+}
+
+🧪 참고:
+- 브라우저에서 `http://○○:8000/docs` 에 접속하면 API를 테스트할 수 있습니다.
+- IP 주소는 변경될 수 있으니, 접속이 안 되면 저에게 알려주세요.
+- **이 API는 같은 Wi-Fi 네트워크 안에서만 작동합니다. 학교에 있을 때만 사용 가능합니다.**
+
+---
+
+잘 부탁드립니다!
+
+
+
+Hi!
+
+The API is ready. Please create the front-end website based on the following information.
+Use HTML / CSS / JavaScript for the implementation.
+
+---
+
+🌐 API Endpoint:
+http://○○:8000/summarize
+# I contacted them via text as I cannot disclose this information.
+
+📡 Request Format:
+- Method: POST
+- Header: Content-Type: application/json
+- Body (JSON format):
+
+{
+  "url": "https://example.com/some-news-article"
+}
+
+📨 Response Format:
+{
+  "summary": "The summarized text will appear here"
+}
+
+🧪 Notes:
+- You can test the API using your browser at: `http://○○:8000/docs`
+- The IP address may change. Let me know if you're unable to connect.
+- **This API only works when we are on the same Wi-Fi network. Please use it while at school.**
+
+---
+
+Thanks.
