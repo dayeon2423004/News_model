@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truthify</title>
+
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+  <style>
+    /* 기본 -> 데스크탑 화면 */
+    body {
+      display: flex;
+      flex-direction: column;  /* 자식 요소들을 세로로 정렬 */
+      min-height: 100vh;       /* body가 최소한 뷰포트 전체 높이를 차지하도록 설정 */
+      margin: 0;               /* body의 기본 마진 제거 */
+      overflow-y: auto;        /* 콘텐츠가 높이를 초과하면 세로 스크롤 허용 */
+    }
+
+    header {
+      flex-grow: 1; /* header(및 로고)가 사용 가능한 공간을 차지하도록 허용 */
+      display: flex; /* header를 flex 컨테이너로 만들어 로고를 중앙에 배치 */
+      justify-content: center; /* 로고를 가로 중앙에 배치 */
+      align-items: center;     /* 로고를 세로 중앙에 배치 */
+      padding: 20px;           /* 상하 여백 추가 */
+    }
+
+    .logo {
+      display: flex;
+      align-items: center; /* header 내에서 로고를 세로 중앙에 배치 */
+    }
+
+    .char {
+      box-sizing: border-box;
+      display: inline-block;
+      transition: transform 0.3s, color 0.3s;
+      animation-name: slide;
+      animation-duration: 3s;
+      animation-delay: 0.2s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    }
+
+    .five {
+      margin: 5px;
+      margin-top: 100px;
+      font-size: 40px;
+    }
+
+    .t {
+      margin-right: 20px;
+      font-size: 100px;
+    }
+
+    .r {
+      margin-right: 20px;
+      margin-top: 50px;
+      font-size: 100px;
+    }
+
+    .u {
+      margin-right: 20px;
+      margin-bottom: 70px;
+      font-size: 100px;
+    }
+
+    #title {
+      position: fixed; /* 상단에 고정 */
+      background-color: #f5f5f5;
+      padding: 20px;
+      width: 50%;
+      left: 50%;
+      transform: translateX(-50%); /* 중앙 정렬 */
+      border-radius: 5px;
+      border: 2px solid #969696;
+      margin: 20px auto; /* 가로 중앙 정렬 및 상하 마진 추가 */
+      box-sizing: border-box; /* 패딩과 테두리를 요소의 전체 크기에 포함 */
+      z-index: 10;
+    }
+
+    #summary {
+      display: none; /* 초기 숨김 */
+      margin-top: 15px;
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #newslink {
+      width: 100%;  /* 전체 가로폭으로 늘리기 */
+      max-width: 600px; /* 최대 너비 설정 */
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;  /* 입력창 테두리 */
+    }
+
+    footer {
+      padding: 30px;
+      margin-top: auto; /* footer를 하단에 배치 */
+      text-align: center; /* footer 내용을 중앙 정렬 */
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    footer button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+      min-width: 180px;
+      text-align: left;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(-500%);
+        opacity: 0;
+      }
+      50% {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+      100% {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    /* 미디어 쿼리: 화면이 768px 이하일 경우 (모바일 화면) */
+    @media screen and (max-width: 768px) {
+      body {
+        flex-direction: column;
+        padding: 10px; /* 모바일에서는 패딩을 조금 줄임 */
+      }
+
+      header {
+        flex-grow: 0;
+        padding: 10px;
+      }
+
+      .logo {
+        font-size: 30px; /* 모바일에서는 로고 폰트를 작게 */
+        flex-direction: row; /* 로고를 가로로 배치 */
+        text-align: center;
+      }
+
+      #title {
+        width: 90%; /* 화면 크기에 맞춰 title의 너비를 줄임 */
+        padding: 15px; /* 모바일에서 패딩을 줄여서 공간 활용 */
+      }
+
+      #newslink {
+        width: 100%; /* 입력창이 화면 너비에 맞게 확장 */
+        font-size: 14px; /* 모바일에서 글자 크기 작게 */
+        padding: 8px; /* 모바일에서 패딩을 줄임 */
+      }
+
+      footer {
+        padding: 20px; /* 모바일에서 푸터 패딩을 줄임 */
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      footer input,
+      footer button {
+        width: 100%;
+        font-size: 14px; /* 모바일에서 폰트 크기 줄임 */
+        margin: 0;
+      }
+    }
+
+    /* 미디어 쿼리: 화면이 1024px 이상일 경우 (데스크탑 화면) */
+    @media screen and (min-width: 1024px) {
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .logo {
+        font-size: 50px; /* 데스크탑에서는 로고 폰트를 크게 */
+      }
+
+      #title {
+        width: 40%; /* 데스크탑에서는 title 너비를 좀 더 좁게 */
+      }
+
+      #newslink {
+        width: 500px; /* 데스크탑에서는 입력창을 조금 더 좁게 */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="char t">T</span>
+      <span class="char r">r</span>
+      <span class="char u">u</span>
+      <span class="char five">t</span>
+      <span class="char five">h</span>
+      <span class="char five">i</span>
+      <span class="char five">f</span>
+      <span class="char five">y</span>
+    </div> 
+  </header>
+
+  <section id="title">
+    📢 오늘의 기사 요약입니다!
+    <p>요약을 보시려면 전체 보기를 클릭해주세요. <button id="buttonID">▼</button></p>
+    <div id="summary"></div>
+  </section>
+
+  <footer>
+    <input type="text" id="newslink" placeholder="요약할 뉴스 링크를 입력하세요" />
+    <button id="requestBtn">➔</button>
+    <p id="status">요약을 요청하세요.</p>
+  </footer>
+
+  <script>
+    const button = document.getElementById('requestBtn');
+    const input = document.getElementById('newslink');
+    const summaryDiv = document.getElementById('summary');
+    const titleSection = document.getElementById('title');
+    const toggleButton = document.getElementById('buttonID');
+    const statusP = document.getElementById('status');
+
+    let audioPlayer = null;
+
+    // 전체 보기 토글
+    toggleButton.addEventListener('click', () => {
+      if (summaryDiv.style.display === 'none' || summaryDiv.style.display === '') {
+        summaryDiv.style.display = 'block';
+        toggleButton.textContent = '▲';
+      } else {
+        summaryDiv.style.display = 'none';
+        toggleButton.textContent = '▼';
+      }
+    });
+
+    button.addEventListener('click', async () => {
+      const url = input.value.trim();
+      if (!url) {
+        alert("뉴스 링크를 입력해주세요.");
+        return;
+      }
+
+      statusP.textContent = '요약을 요청 중입니다...';
+      summaryDiv.style.display = 'none';
+      toggleButton.textContent = '▼';
+      summaryDiv.innerHTML = '';
+
+      try {
+        // API URLは環境に合わせて調整してください
+        const response = await fetch('http://127.0.0.1:8000/summarize/audio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        
+
+        
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          alert('오류: ' + (errorData.detail || '알 수 없는 오류'));
+          statusP.textContent = '요약 요청 실패';
+          return;
+        }
+
+        const data = await response.json();
+
+        // 요약 및 감정 표시
+        summaryDiv.innerHTML = `
+          <p><strong>요약:</strong> ${data.summary}</p>
+          <p><strong>감정:</strong> ${data.emotion}</p>
+          <button id="playAudio">▶️ 음성 재생</button>
+        `;
+        summaryDiv.style.display = 'block';
+        toggleButton.textContent = '▲';
+
+        statusP.textContent = '요약 완료!';
+
+        // audio element 생성 또는 재설정
+        if (!audioPlayer) {
+          audioPlayer = document.createElement('audio');
+          document.body.appendChild(audioPlayer);
+        }
+        audioPlayer.src = `http://127.0.0.1:8000${data.audio_url}`;
+        audioPlayer.load();
+
+        document.getElementById('playAudio').onclick = () => {
+          audioPlayer.play();
+        };
+
+      } catch (e) {
+        alert('요청 중 오류가 발생했습니다: ' + e.message);
+        statusP.textContent = '요약 요청 실패';
+      }
+    });
+  </script>
+  
+</body>
+</html>
